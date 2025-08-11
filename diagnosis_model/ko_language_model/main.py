@@ -5,9 +5,17 @@ import json
 import subprocess
 from datetime import datetime
 import os
+from dotenv import load_dotenv
 
-openai.api_key=os.getenv("OPENAI_API_KEY", "")
+# .env 파일 로드
+load_dotenv()
 
+# GPT API 키 설정 (환경변수에서 로드)
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("OPENAI_API_KEY 환경변수가 설정되지 않았습니다. .env 파일을 확인하세요.")
+
+openai.api_key = api_key
 
 def count_korean_fruits_vegetables(user_text: str) -> dict:
     system_prompt = (

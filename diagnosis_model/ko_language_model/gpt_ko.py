@@ -1,9 +1,18 @@
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
+
+# .env 파일 로드
+load_dotenv()
+
+# GPT API 키 설정 (환경변수에서 로드)
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("OPENAI_API_KEY 환경변수가 설정되지 않았습니다. .env 파일을 확인하세요.")
 
 def check_link(messages: list[str]) -> int:
     client = OpenAI(
-        api_key=os.getenv("OPENAI_API_KEY", "")
+        api_key=api_key
     )
 
     if len(messages) != 2:

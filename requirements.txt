@@ -33,6 +33,9 @@ Pillow==10.0.1
 httpx==0.25.2
 requests==2.31.0
 
+# 환경변수 관리
+python-dotenv==1.0.0
+
 # 유틸리티
 python-dateutil==2.8.2
 pathlib2==2.3.7

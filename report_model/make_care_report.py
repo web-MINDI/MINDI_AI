@@ -1,11 +1,18 @@
 from openai import OpenAI
 import datetime
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 
-client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY", ""))
+load_dotenv()
 
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("OPENAI_API_KEY 환경변수가 설정되지 않았습니다. .env 파일을 확인하세요.")
+
+client = OpenAI(
+    api_key=api_key
+)
 
 def call_gpt(prompt):
     response = client.chat.completions.create(
